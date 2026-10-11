@@ -1,6 +1,5 @@
 # 3. Nombre del proyecto y detalles
-
-![Logo MEPEGA](images/Logo.jpg)
+![Logo Patitas](images/Logo.png)
 
 ## Gestor de PQRS - Patitas 
 
