@@ -1,47 +1,76 @@
 import os
 
-DATA_FILE = os.path.join("..", "data", "peticiones.txt")
+DATA_DIR = os.path.join("..", "data")
 
-def asegurar_archivo():
-    """Asegura que la carpeta y el archivo de datos existan."""
-    os.makedirs(os.path.dirname(DATA_FILE), exist_ok=True)
-    if not os.path.exists(DATA_FILE):
-        with open(DATA_FILE, "w", encoding="utf-8") as f:
-            f.write("ID | TIPO | NOMBRE | DESCRIPCION | ESTADO\n")
+def obtener_ruta_archivo(tipo):
+    """Retorna la ruta del archivo correspondiente según el tipo."""
+    archivos = {
+        "Peticion": "Peticion.txt",
+        "Queja": "Queja.txt",
+        "Reclamo": "Reclamo.txt",
+        "Sugerencia": "Sugerencia.txt"
+    }
+    nombre_archivo = archivos.get(tipo, "Peticion.txt")
+    return os.path.join(DATA_DIR, nombre_archivo)
 
 def registrar_pqrs():
-    print("\n--- Registrar Nueva PQRS ---")
-    tipo = input("Ingrese el tipo (Petición, Queja, Reclamo, Sugerencia): ")
+    print("\n--- Registrar Nueva Solicitud ---")
+    print("Seleccione el tipo:")
+    print("1. Peticion")
+    print("2. Queja")
+    print("3. Reclamo")
+    print("4. Sugerencia")
+    
+    op_tipo = input("Opción (1-4): ")
+    tipos = {"1": "Peticion", "2": "Queja", "3": "Reclamo", "4": "Sugerencia"}
+    tipo_seleccionado = tipos.get(op_tipo, "Peticion")
+    
     nombre = input("Nombre del ciudadano/usuario: ")
     descripcion = input("Descripción de la solicitud: ")
     estado = "Registrada"
     
-    # Generar un ID simple basado en el número de líneas
-    asegurar_archivo()
-    with open(DATA_FILE, "r", encoding="utf-8") as f:
-        lineas = f.readlines()
-    nuevo_id = len(lineas)
+    ruta_archivo = obtener_ruta_archivo(tipo_seleccionado)
     
-    registro = f"{nuevo_id} | {tipo} | {nombre} | {descripcion} | {estado}\n"
+    # Generar ID
+    nuevo_id = 1
+    if os.path.exists(ruta_archivo):
+        with open(ruta_archivo, "r", encoding="utf-8") as f:
+            lineas = f.readlines()
+            nuevo_id = len(lineas) + 1
+            
+    registro = f"{nuevo_id} | {nombre} | {descripcion} | {estado}\n"
     
-    with open(DATA_FILE, "a", encoding="utf-8") as f:
+    with open(ruta_archivo, "a", encoding="utf-8") as f:
         f.write(registro)
-    
-    print(f"\n¡PQRS registrada con éxito bajo el ID: {nuevo_id}!")
+        
+    print(f"\n¡{tipo_seleccionado} registrada con éxito con el ID: {nuevo_id}!")
 
 def consultar_pqrs():
-    print("\n--- Listado de PQRS Registradas ---")
-    asegurar_archivo()
-    with open(DATA_FILE, "r", encoding="utf-8") as f:
-        contenido = f.read()
-    print(contenido if contenido.strip() else "No hay registros actuales.")
+    print("\n--- Consultar Solicitudes ---")
+    print("1. Peticiones")
+    print("2. Quejas")
+    print("3. Reclamos")
+    print("4. Sugerencias")
+    
+    op_tipo = input("Seleccione el tipo a consultar (1-4): ")
+    tipos = {"1": "Peticion", "2": "Queja", "3": "Reclamo", "4": "Sugerencia"}
+    tipo_seleccionado = tipos.get(op_tipo, "Peticion")
+    
+    ruta_archivo = obtener_ruta_archivo(tipo_seleccionado)
+    
+    print(f"\n--- Listado de {tipo_seleccionado}s ---")
+    if os.path.exists(ruta_archivo):
+        with open(ruta_archivo, "r", encoding="utf-8") as f:
+            contenido = f.read()
+        print(contenido if contenido.strip() else "No hay registros en este archivo.")
+    else:
+        print("El archivo correspondiente no existe.")
 
 def menu():
-    asegurar_archivo()
     while True:
-        print("\n=== SISTEMA DE GESTIÓN DE PQRS ===")
-        print("1. Registrar nueva PQRS")
-        print("2. Consultar PQRS")
+        print("\n=== SISTEMA DE GESTIÓN PATITAS PQRS ===")
+        print("1. Registrar solicitud")
+        print("2. Consultar solicitudes")
         print("3. Salir")
         
         opcion = input("Seleccione una opción: ")
@@ -51,7 +80,7 @@ def menu():
         elif opcion == "2":
             consultar_pqrs()
         elif opcion == "3":
-            print("\n¡Saliendo del sistema. Hasta luego!")
+            print("\n¡Gracias por usar el sistema Patitas PQRS!")
             break
         else:
             print("\nOpción inválida. Intente de nuevo.")
