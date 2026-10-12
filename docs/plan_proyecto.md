@@ -22,7 +22,7 @@ Para organizar el trabajo del equipo a lo largo del semestre, dividimos el proye
   * **30 de septiembre de 2026:** Entrega formal de los puntos 1 al 7 a través del repositorio de GitHub.
   * **01 de octubre de 2026:** Preparación y sustentación del proyecto ante el docente.
 
-*[Descargar el archivo completo de Excel del Cronograma](docs/Cronograma%20del%20Proyecto%20PQRS%20Patitas%20diagrama%20de%20Gantt.xlsx)*
+*[Descargar el archivo completo de Excel del Cronograma](Cronograma%20del%20Proyecto%20PQRS%20Patitas%20diagrama%20de%20Gantt.xlsx)*
 ---
 
 ### 7. Presupuesto y Estimación de Costos (Simulación Académica)
