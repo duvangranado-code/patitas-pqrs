@@ -1,7 +1,7 @@
 # 5. Reporte de Visión
 
 ## Descripción del Proyecto
-Nuestro sistema es una aplicación de consola desarrollada en la aplicación Python, esta diseñada para automatizar y optimizar la gestión de las Peticiones, Quejas, Reclamos y las correspondientes Sugerencias (PQRS) en apoyo al Movimiento Estudiantil de Perritos y Gaticos MEPEGA de la Universidad de Antioquia.
+Nuestro sistema es una aplicación de consola desarrollada en la aplicación Python, esta diseñada para automatizar y optimizar la gestión de las Peticiones, Quejas, Reclamos y las correspondientes Sugerencias (PQRS) en apoyo al Movimiento Estudiantil de Perritos y Gaticos (Patitas) de la Universidad de Antioquia.
 
 ## Propósito y Beneficios
 El propósito principal es ofrecer a la organización una herramienta digital centralizada y ordenada que permita el manejo de los casos reportados por los solicitantes en relación con la atención de perros, gatos y otros animales. Los beneficios clave son:
