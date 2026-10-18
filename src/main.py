@@ -7,6 +7,7 @@
 # ============================================================
 import autenticacion
 import pqrs
+import reportes
 import validaciones
 
 
@@ -47,7 +48,7 @@ def main():
         elif opcion == 3:
             pqrs.cambiar_estado()
         elif opcion == 4:
-            print("\nEstadísticas: en construcción (próxima versión).")
+            reportes.menu_estadisticas()
         elif opcion == 5:
             print("\n¡Gracias por usar Patitas PQRS! Hasta pronto.")
         else:

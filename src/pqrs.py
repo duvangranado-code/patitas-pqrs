@@ -3,6 +3,7 @@
 # Proyecto: Patitas PQRS (Algoritmia y Programación 2026-2)
 # ============================================================
 import archivos
+import radicado
 import validaciones as val
 
 # Nombre bonito de cada campo (para mostrar en pantalla)
@@ -25,6 +26,7 @@ ETIQUETAS = (
     ("tipo_mascota", "Tipo de mascota"),
     ("campus_relacionado", "Campus"),
     ("usuario_registro", "Registrado por"),
+    ("fecha_respuesta", "Fecha de respuesta"),
 )
 
 
@@ -92,6 +94,7 @@ def registrar_pqrs(usuario_activo):
         "fecha_maxima_respuesta": fecha_maxima,
         "estado_peticion": val.ESTADOS[0],                 # siempre empieza en "Registrada"
         "usuario_registro": usuario_activo["usuario"],     # viene de la sesión
+        "fecha_respuesta": "",                             # se llena al pasar a Solucionada
     }
     archivos.guardar_registro(tipo, registro)
 
@@ -99,6 +102,11 @@ def registrar_pqrs(usuario_activo):
     print("ID asignado: " + str(registro["id"]))
     print("Fecha de radicación: " + fecha_radicacion)
     print("Fecha máxima de respuesta: " + fecha_maxima)
+
+    # Comprobante: se muestra en pantalla y se guarda como archivo .txt
+    radicado.imprimir_radicado(registro)
+    ruta = radicado.guardar_radicado(registro)
+    print("\nRadicado guardado en: " + ruta)
     return registro
 
 
@@ -113,7 +121,10 @@ def consultar_pqrs():
     if registro is None:
         print("No existe " + tipo + " con el ID " + str(id_buscado) + ".")
         return
-    mostrar_registro(registro)
+    radicado.imprimir_radicado(registro)         # el estado se ve como un radicado
+    ver = input("\n¿Ver la descripción completa? (s/n): ").strip().lower()
+    if ver == "s":
+        print("Descripción: " + registro["descripcion_detallada"])
 
 
 # ------------------------------------------------------------
@@ -144,5 +155,8 @@ def cambiar_estado():
     if respuesta != "s":
         print("No se hicieron cambios.")
         return
-    archivos.actualizar_campo(tipo, id_buscado, "estado_peticion", estado_nuevo)
+    cambios = {"estado_peticion": estado_nuevo}
+    if estado_nuevo == val.ESTADOS[-1]:                   # pasa a Solucionada: se anota cuándo
+        cambios["fecha_respuesta"] = val.fecha_actual()
+    archivos.actualizar_campos(tipo, id_buscado, cambios)
     print("Estado actualizado: " + estado_actual + " -> " + estado_nuevo)

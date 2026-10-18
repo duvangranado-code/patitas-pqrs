@@ -23,6 +23,7 @@ CAMPOS = (
     "tipo_solicitud", "fecha_radicacion", "canal_recepcion", "asunto_titulo",
     "descripcion_detallada", "tipo_mascota", "campus_relacionado",
     "fecha_maxima_respuesta", "estado_peticion", "usuario_registro",
+    "fecha_respuesta",      # se llena sola cuando la PQRS pasa a "Solucionada"
 )
 
 CAMPOS_USUARIO = ("usuario", "nombre_completo", "correo_institucional",
@@ -105,9 +106,20 @@ def siguiente_id(tipo):
     return mayor + 1
 
 
+def migrar_encabezado(tipo):
+    """Si el archivo tiene un encabezado viejo (sin el campo fecha_respuesta),
+    lo reescribe con el encabezado actual. Los registros viejos quedan igual."""
+    ruta = ruta_archivo(tipo)
+    with open(ruta, "r", encoding="utf-8") as archivo:
+        primera_linea = archivo.readline().rstrip("\r\n")
+    if primera_linea != SEPARADOR.join(CAMPOS):
+        reescribir_archivo(tipo, leer_registros(tipo))
+
+
 def guardar_registro(tipo, registro):
     """Agrega un registro nuevo al final del archivo de su tipo."""
     asegurar_archivo(tipo)
+    migrar_encabezado(tipo)
     ruta = ruta_archivo(tipo)
     # Si la última línea no termina en salto de línea, lo agregamos primero
     with open(ruta, "rb") as archivo:
@@ -147,6 +159,21 @@ def actualizar_campo(tipo, id_registro, campo, valor):
     for registro in registros:
         if registro["id"] == str(id_registro):
             registro[campo] = valor
+            encontrado = True
+    if encontrado:
+        reescribir_archivo(tipo, registros)
+    return encontrado
+
+
+def actualizar_campos(tipo, id_registro, cambios):
+    """Igual que actualizar_campo, pero cambia varios campos a la vez.
+    'cambios' es un diccionario {campo: valor_nuevo}."""
+    registros = leer_registros(tipo)
+    encontrado = False
+    for registro in registros:
+        if registro["id"] == str(id_registro):
+            for campo in cambios:
+                registro[campo] = cambios[campo]
             encontrado = True
     if encontrado:
         reescribir_archivo(tipo, registros)
