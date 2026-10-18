@@ -10,12 +10,12 @@ import datetime
 import unicodedata
 
 # Días que tiene el equipo para responder una PQRS.
-# El enunciado pide que cada equipo cambie este valor (el ejemplo usa 30).
-DIAS_RESPUESTA = 30
+DIAS_RESPUESTA = 15
 
 FORMATO_FECHA = "%Y-%m-%d %H:%M:%S"
 
 # Listas de valores permitidos (tuplas: no cambian durante la ejecución)
+
 TIPOS_DOCUMENTO = ("CC", "TI", "CE", "PP", "NIT")
 TIPOS_TELEFONO = ("Celular", "Fijo", "Corporativo", "Otro")
 TIPOS_SOLICITUD = ("Peticion", "Queja", "Reclamo", "Sugerencia")
