@@ -1,29 +1,29 @@
-# ============================================================
+#============================================================
 # archivos.py - Lectura y escritura de los archivos planos
 # Proyecto: Patitas PQRS (Algoritmia y Programación 2026-2)
 #
-# Cada tipo de solicitud tiene su propio archivo en la carpeta data/:
+# Cada tipo de solicitud tiene su propio archivo en la correspondiente carpeta de data/:
 #   Peticion.txt, Queja.txt, Reclamo.txt, Sugerencia.txt
 # Todos tienen la misma estructura: una línea de encabezado y luego
 # un registro por línea, con los campos separados por el símbolo |
 # ============================================================
 import os
 
-# La carpeta data/ se calcula desde la ubicación de este archivo,
-# así funciona sin importar desde dónde se ejecute el programa.
+# La carpeta correspondiente a data/ se calcula desde la ubicación de este archivo,
+# así funciona sin importar desde dónde se ejecute el respectivo programa.
 CARPETA_SRC = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(os.path.dirname(CARPETA_SRC), "data")
 
 SEPARADOR = "|"
 
-# Campos de cada registro (en el mismo orden del encabezado de los archivos)
+# Campos de cada uno de los registro (en el mismo orden del encabezado de los archivos)
 CAMPOS = (
     "id", "nombre_completo", "tipo_documento", "numero_documento",
     "tipo_telefono", "telefono_contacto", "correo_electronico", "direccion",
     "tipo_solicitud", "fecha_radicacion", "canal_recepcion", "asunto_titulo",
     "descripcion_detallada", "tipo_mascota", "campus_relacionado",
     "fecha_maxima_respuesta", "estado_peticion", "usuario_registro",
-    "fecha_respuesta",      # se llena sola cuando la PQRS pasa a "Solucionada"
+    "fecha_respuesta",        # se llena sola cuando la PQRS pasa a estar ya "Solucionada"
 )
 
 CAMPOS_USUARIO = ("usuario", "nombre_completo", "correo_institucional",
@@ -38,11 +38,9 @@ ARCHIVOS = {
 }
 ARCHIVO_USUARIOS = "Usuarios.txt"
 
-
 def ruta_archivo(tipo):
     """Devuelve la ruta completa del archivo de un tipo de solicitud."""
     return os.path.join(DATA_DIR, ARCHIVOS[tipo])
-
 
 def linea_a_diccionario(linea, campos):
     """Convierte una línea de texto en un diccionario {campo: valor}."""
@@ -57,7 +55,6 @@ def linea_a_diccionario(linea, campos):
         posicion = posicion + 1
     return registro
 
-
 def diccionario_a_linea(registro):
     """Convierte un diccionario en una línea de texto lista para guardar."""
     valores = []
@@ -68,7 +65,6 @@ def diccionario_a_linea(registro):
         valores.append(valor)
     return SEPARADOR.join(valores)
 
-
 def asegurar_archivo(tipo):
     """Si el archivo no existe, lo crea con su línea de encabezado."""
     ruta = ruta_archivo(tipo)
@@ -76,7 +72,6 @@ def asegurar_archivo(tipo):
         os.makedirs(DATA_DIR, exist_ok=True)
         with open(ruta, "w", encoding="utf-8", newline="\n") as archivo:
             archivo.write(SEPARADOR.join(CAMPOS) + "\n")
-
 
 def leer_registros(tipo):
     """Lee todos los registros de un tipo. Devuelve una lista de diccionarios."""
@@ -91,7 +86,6 @@ def leer_registros(tipo):
             registros.append(linea_a_diccionario(linea, CAMPOS))
     return registros
 
-
 def siguiente_id(tipo):
     """ID autoincremental: el mayor ID que existe en ese archivo + 1.
     Cada archivo tiene su propia secuencia, empezando en 1."""
@@ -100,11 +94,10 @@ def siguiente_id(tipo):
         try:
             numero = int(registro["id"])
         except ValueError:
-            continue                          # ignora líneas con ID dañado
+            continue                     # ignora líneas con el ID que se encuentra dañado
         if numero > mayor:
             mayor = numero
     return mayor + 1
-
 
 def migrar_encabezado(tipo):
     """Si el archivo tiene un encabezado viejo (sin el campo fecha_respuesta),
@@ -114,7 +107,6 @@ def migrar_encabezado(tipo):
         primera_linea = archivo.readline().rstrip("\r\n")
     if primera_linea != SEPARADOR.join(CAMPOS):
         reescribir_archivo(tipo, leer_registros(tipo))
-
 
 def guardar_registro(tipo, registro):
     """Agrega un registro nuevo al final del archivo de su tipo."""
@@ -130,7 +122,6 @@ def guardar_registro(tipo, registro):
     with open(ruta, "a", encoding="utf-8", newline="\n") as archivo:
         archivo.write(prefijo + diccionario_a_linea(registro) + "\n")
 
-
 def reescribir_archivo(tipo, registros):
     """Reemplaza todo el archivo con la lista de registros dada.
     Se usa cuando se cambia un dato (por ejemplo, el estado)."""
@@ -142,14 +133,12 @@ def reescribir_archivo(tipo, registros):
             archivo.write(diccionario_a_linea(registro) + "\n")
     os.replace(temporal, ruta)                # reemplazo seguro
 
-
 def buscar_registro(tipo, id_registro):
     """Busca un registro por su ID. Devuelve el diccionario o None."""
     for registro in leer_registros(tipo):
         if registro["id"] == str(id_registro):
             return registro
     return None
-
 
 def actualizar_campo(tipo, id_registro, campo, valor):
     """Cambia un campo de un registro y guarda el archivo.
@@ -164,7 +153,6 @@ def actualizar_campo(tipo, id_registro, campo, valor):
         reescribir_archivo(tipo, registros)
     return encontrado
 
-
 def actualizar_campos(tipo, id_registro, cambios):
     """Igual que actualizar_campo, pero cambia varios campos a la vez.
     'cambios' es un diccionario {campo: valor_nuevo}."""
@@ -178,7 +166,6 @@ def actualizar_campos(tipo, id_registro, cambios):
     if encontrado:
         reescribir_archivo(tipo, registros)
     return encontrado
-
 
 def leer_usuarios():
     """Lee Usuarios.txt. Devuelve una lista de diccionarios (para el login)."""
