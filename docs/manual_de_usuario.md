@@ -1,44 +1,39 @@
 # Manual de usuario — Patitas PQRS
 
-Gestor de Peticiones, Quejas, Reclamos y Sugerencias (PQRS) para la atención de perros y gatos.
+Gestor de Peticiones, Quejas, Reclamos y Sugerencias (PQRS) para la atención de perros, gatos y demás animales.
 Programa de consola en Python — Algoritmia y Programación 2026-2, Universidad de Antioquia.
 
 ## 1. Requisitos
 
-- Python 3.8 o superior.
-- No necesita instalar librerías adicionales.
-- La carpeta `data/` debe estar junto a la carpeta `src/` (como viene en el repositorio).
+- Python 3.8 o una versión superior.
+- No se requiere o necesita de la instalación librerías adicionales.
+- La carpeta `data/` debe estar junto a la carpeta de `src/' igual que en el repositorio.
 
-## 2. Cómo abrir el programa
+## 2. Cómo se debe abrir el programa
 
 1. Abra una terminal en la carpeta `src` del proyecto.
-2. Escriba `python main.py` y pulse Enter (en algunos computadores es `python3 main.py`).
+2. Escriba `python main.py` después de ello pulse Enter.
 
-También puede abrir `main.py` en Visual Studio Code y pulsar el botón de ejecutar (triángulo).
-
-Al iniciar aparece el logo de Patitas y la pantalla de ingreso.
+También puede abrir `main.py` en Visual Studio Code y pulsar el botón de ejecutar para correr el programa.
+Al iniciar aparece el logo del programa (Patitas) y la pantalla de ingreso.
 
 ## 3. Inicio de sesión
-
 El programa pide:
-
 ```
 Por favor ingrese sus credenciales
 (escriba CANCELAR como usuario para salir)
     1. Ingrese Usuario :
     2. Ingrese Clave   :
 ```
-
-- Puede escribir el **usuario** (por ejemplo `admin_udea`) o el **correo institucional**.
-- La clave no se muestra en pantalla mientras se escribe.
-- Los usuarios autorizados están en `data/Usuarios.txt`. Solo pueden ingresar usuarios con estado **Activo**.
-- Se permiten **3 intentos**. Si los 3 fallan, el sistema se **bloquea 30 segundos** y muestra una cuenta regresiva.
+- Puede escribir el **usuario** (por ejemplo `admin_udea`) o bien el **correo institucional**.
+- La clave no se muestra en pantalla mientras se escribe por motivos de seguridad.
+- Los usuarios autorizados están en `data/Usuarios.txt`. Solo pueden ingresar usuarios con estado que se encuentren **Activo**.
+- Se permiten **3 intentos**. Si los 3 fallan, el sistema se **bloquea 30 segundos** y va mostrando la cuenta regresiva.
 - Para salir sin ingresar, escriba `CANCELAR` como usuario.
-
+- 
 Al ingresar bien, el sistema muestra el nombre y el rol, y guarda el usuario para anotarlo en cada PQRS que registre.
 
 ## 4. Menú principal
-
 ```
 1. Registrar PQRS
 2. Consultar PQRS
@@ -46,8 +41,7 @@ Al ingresar bien, el sistema muestra el nombre y el rol, y guarda el usuario par
 4. Estadísticas
 5. Salir
 ```
-
-Escriba el número de la opción y pulse Enter. Si escribe letras o un número fuera de rango, el programa avisa y vuelve a preguntar.
+Escriba el número de la opción y pulse Enter. Si escribe letras o un número fuera de rango, el programa avisa y le vuelve a preguntar a los usuarios.
 
 ## 5. Registrar PQRS (opción 1)
 
@@ -72,38 +66,31 @@ El sistema pide los datos uno por uno. Si un dato no es válido, explica el erro
 No se pueden usar el símbolo `|` ni saltos de línea en el asunto y la descripción.
 
 El sistema asigna **solo**:
-
-- El **ID** (número consecutivo, independiente en cada tipo de solicitud).
+- El **ID** (número de consecutivo, independiente en cada tipo de solicitud).
 - La **fecha de radicación** (la fecha y hora actuales).
 - La **fecha máxima de respuesta** (fecha de radicación + **15 días**).
 - El **estado inicial**: Registrada.
-- El **usuario que registra** (el que inició sesión).
+- El **usuario que registra** (la persona que inició sesión).
 
 Al terminar, se muestra el **radicado** y se guarda como archivo de texto en `data/radicados/` (por ejemplo `PET-003001.txt`).
 
 ## 6. Consultar PQRS (opción 2)
-
 1. Elija el tipo de solicitud.
 2. Escriba el ID.
-3. El programa muestra la PQRS como **radicado** (ancho fijo de 120 caracteres, con estado y fechas).
+3. El programa muestra la PQRS como **radicado** este muestra el ancho de 120 caracteres, con el estado y fechas.
 4. Puede pedir ver la **descripción completa**, que no aparece en el radicado.
-
 Si el ID no existe, el programa lo avisa.
 
 ## 7. Registrar cambio en PQRS (opción 3)
-
 1. Elija el tipo de solicitud y escriba el ID.
 2. El programa muestra el estado actual y propone el siguiente.
 3. Confirme con `s` (sí) o `n` (no).
-
 El estado solo puede avanzar en este orden:
 
 **Registrada → En proceso → Solucionada**
-
-No se puede saltar un estado ni devolverlo. Una PQRS **Solucionada** ya no cambia. Al pasar a Solucionada, el sistema anota la **fecha de respuesta**.
+No se puede saltar ninguno de los estados ni devolverlos. Una PQRS **Solucionada** ya no cambia (Respuesta otorgada al usuario). Al pasar a Solucionada, el sistema anota la **fecha de respuesta** en la que se le dio la solución después del periodo de los 15 días hábiles. 
 
 ## 8. Estadísticas (opción 4)
-
 ```
 1. Promedio de días de respuesta
 2. Distribución por tipo de mascota
@@ -115,7 +102,6 @@ No se puede saltar un estado ni devolverlo. Una PQRS **Solucionada** ya no cambi
 8. Exportar
 9. Volver al menú principal
 ```
-
 | Opción | Qué muestra |
 |---|---|
 | 1 | Promedio, en días enteros, que toma responder una PQRS (con las PQRS Solucionadas que tienen fecha de respuesta) |
