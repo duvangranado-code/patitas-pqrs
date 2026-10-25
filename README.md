@@ -1,4 +1,5 @@
 # 3. Nombre del proyecto y detalles
+
 ![Logo Patitas](images/Logo.png)
 
 ## Gestor de PQRS - Patitas 
@@ -38,6 +39,52 @@ Todos los integrantes pertenecen al programa de **Ingeniería Industrial**. A co
 ## Estructura del repositorio
 
 - `src/` — Código fuente en Python
-- `docs/` — Documentación y manual de usuario
+- `docs/` — Documentación, plan de proyecto, actas y [manual de usuario](docs/manual_de_usuario.md)
 - `images/` — Logo y diagramas de Gantt del proyecto
 - `data/` — Archivos planos (Peticion.txt, Queja.txt, Reclamo.txt, Sugerencia.txt, Usuarios.txt)
+
+## Cómo ejecutar el programa
+
+Requisitos: **Python 3.8 o superior**. No hay que instalar librerías adicionales.
+
+1. Descargue o clone el repositorio:
+   ```
+   git clone https://github.com/duvangranado-code/patitas-pqrs.git
+   ```
+2. Abra una terminal en la carpeta del proyecto y entre a `src`:
+   ```
+   cd patitas-pqrs/src
+   ```
+3. Ejecute el programa:
+   ```
+   python main.py
+   ```
+   (en algunos computadores el comando es `python3 main.py`).
+
+También puede abrir `src/main.py` en Visual Studio Code y pulsar el botón de ejecutar.
+El programa pide usuario y clave; los usuarios de prueba están en `data/Usuarios.txt`.
+La guía completa de uso está en el [manual de usuario](docs/manual_de_usuario.md).
+
+## Qué hace el sistema
+
+- **Login** con máximo 3 intentos y bloqueo temporal.
+- **Registrar PQRS** (petición, queja, reclamo o sugerencia) con validación de todos los datos.
+- **Consultar PQRS** por tipo e ID, mostrada como radicado de 120 caracteres.
+- **Registrar cambio de estado** (Registrada → En proceso → Solucionada).
+- **Estadísticas**: promedio de días de respuesta, distribución por mascota, canal y campus, efectividad por estado y alerta de vencimiento.
+- **Exportar** un resumen en texto y un archivo consolidado para el tablero de Power BI.
+
+Plazo de respuesta definido por el equipo: **15 días calendario**.
+
+## Módulos de `src/`
+
+| Archivo | Función |
+|---|---|
+| `main.py` | Programa principal y menú. |
+| `autenticacion.py` | Inicio de sesión y control de intentos. |
+| `pqrs.py` | Registrar, consultar y cambiar el estado de las PQRS. |
+| `validaciones.py` | Validación de nombre, documento, teléfono, correo, fechas y demás datos. |
+| `archivos.py` | Lectura y escritura de los archivos planos de `data/`. |
+| `radicado.py` | Comprobante de radicado en texto ASCII (120 caracteres de ancho). |
+| `reportes.py` | Estadísticas y exportación de resultados. |
+
