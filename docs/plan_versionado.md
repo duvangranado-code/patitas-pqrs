@@ -17,7 +17,7 @@ Formato de versión: `vMAYOR.MENOR` (0.x = en desarrollo, 1.0 = entrega final).
 | v0.5 | 25-oct-2026 | 40 | Planeada | Login con máximo 3 intentos (`Usuarios.txt`); archivos planos `Peticion.txt`, `Queja.txt`, `Reclamo.txt`, `Sugerencia.txt`; registrar PQRS con validaciones e ID autoincremental. |
 | v0.6 | 1-nov-2026 | 47 | Planeada | Consultar PQRS, cambio de estado (Registrada → En proceso → Solucionada) e impresión del radicado de 120 caracteres. |
 | v0.7 | 8-nov-2026 | 54 | Planeada | Modularización: `validaciones.py`, `archivos.py`, `reportes.py`; estadísticas (promedio de días de respuesta y las cinco adicionales). |
-| v0.9 | 11-nov-2026 | 57 | Planeada | Programa completo entregado al docente y al monitor para su revisión (una semana antes de la sustentación). |
-| v1.0 | 18-nov-2026 | 64 | Planeada | **Entrega final:** correcciones, manual de usuario en `docs/`, tablero de Power BI y repositorio completo. |
+| v0.9 | 11-nov-2026 | 57 | Planeada | Programa completo entregado al docente y al monitor en cuestión para su revisión, se debe de entregar una semana antes de la sustentación con los compañeros del grupo. |
+| v1.0 | 18-nov-2026 | 64 | Planeada | **Entrega final:** Son las: correcciones, manual de usuario en `docs/`, tablero de Power BI y repositorio completo. |
 
-> Nota: las fechas de las versiones planeadas pueden ajustarse según las reuniones de seguimiento. Cada ajuste se anota aquí con su fecha.
+> Nota: las fechas de las correspondientes versiones son planeadas y se pueden ajustarse según las reuniones de con el equipo de trabajo. Cada ajuste se anota y reporta aquí con su respectiva fecha.
