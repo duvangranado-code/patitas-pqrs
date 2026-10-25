@@ -1,4 +1,4 @@
-# ============================================================
+# ======================================================================================
 # reportes.py - Estadísticas de las PQRS
 # Proyecto: Patitas PQRS (Algoritmia y Programación 2026-2)
 #
@@ -21,7 +21,6 @@ import validaciones as val
 
 DIAS_ALERTA = 5          # "próxima a vencer" = faltan 5 días o menos
 
-
 # ------------------------------------------------------------
 # Funciones de apoyo
 # ------------------------------------------------------------
@@ -33,14 +32,12 @@ def cargar_todos():
             todos.append(registro)
     return todos
 
-
 def a_fecha(texto):
     """Convierte un texto en fecha. Devuelve None si el texto no es una fecha válida."""
     try:
         return datetime.datetime.strptime(texto, val.FORMATO_FECHA)
     except ValueError:
         return None
-
 
 def contar(registros, campo):
     """Cuenta cuántas veces aparece cada valor de un campo: {valor: cantidad}."""
@@ -53,17 +50,14 @@ def contar(registros, campo):
             conteo[valor] = 1
     return conteo
 
-
 def porcentaje(parte, total):
     if total == 0:
         return 0.0
     return parte * 100 / total
 
-
 def por_cantidad(par):
     """Sirve para ordenar de mayor a menor cantidad."""
     return par[1]
-
 
 def lineas_de_conteo(titulo, conteo, total):
     lineas = [titulo]
@@ -71,7 +65,6 @@ def lineas_de_conteo(titulo, conteo, total):
         lineas.append("  " + valor.ljust(48) + str(cantidad).rjust(6) + "  (" + format(porcentaje(cantidad, total), ".1f") + "%)")
     lineas.append("  " + "TOTAL".ljust(48) + str(total).rjust(6))
     return lineas
-
 
 # ------------------------------------------------------------
 # Las estadísticas
@@ -92,7 +85,6 @@ def promedio_dias_respuesta(registros):
         return None, 0
     return int(suma_dias / cantidad + 0.5), cantidad
 
-
 def estadistica_promedio(registros):
     promedio, cantidad = promedio_dias_respuesta(registros)
     lineas = ["PROMEDIO DE DIAS PARA RESPONDER UNA PQRS"]
@@ -102,18 +94,14 @@ def estadistica_promedio(registros):
         lineas.append("  Promedio: " + str(promedio) + " días (calculado con " + str(cantidad) + " PQRS solucionadas)")
     return lineas
 
-
 def estadistica_mascota(registros):
     return lineas_de_conteo("DISTRIBUCION POR TIPO DE MASCOTA", contar(registros, "tipo_mascota"), len(registros))
-
 
 def estadistica_canal(registros):
     return lineas_de_conteo("PROPORCION POR CANAL DE RECEPCION", contar(registros, "canal_recepcion"), len(registros))
 
-
 def estadistica_campus(registros):
     return lineas_de_conteo("DISTRIBUCION POR CAMPUS", contar(registros, "campus_relacionado"), len(registros))
-
 
 def estadistica_efectividad(registros):
     conteo = contar(registros, "estado_peticion")
@@ -125,10 +113,8 @@ def estadistica_efectividad(registros):
     lineas.append("  Tasa de efectividad (Solucionadas / total): " + format(porcentaje(solucionadas, total), ".1f") + "%")
     return lineas
 
-
 def por_fecha_radicacion(par):
     return par[0]
-
 
 def estadistica_vencimiento(registros, ahora=None):
     """Cuenta las PQRS activas (no solucionadas) que ya vencieron o están por vencer
@@ -165,7 +151,6 @@ def estadistica_vencimiento(registros, ahora=None):
         lineas.append("    - " + texto)
     return lineas
 
-
 def todas_las_estadisticas():
     registros = cargar_todos()
     lineas = ["=" * 70, "ESTADISTICAS PATITAS PQRS  (" + str(len(registros)) + " registros)", "=" * 70]
@@ -176,7 +161,6 @@ def todas_las_estadisticas():
         lineas = lineas + funcion(registros)
     return lineas
 
-
 # ------------------------------------------------------------
 # Exportar a archivos planos
 # ------------------------------------------------------------
@@ -186,7 +170,6 @@ def exportar_resumen():
     with open(ruta, "w", encoding="utf-8", newline="\n") as archivo:
         archivo.write("\n".join(todas_las_estadisticas()) + "\n")
     return ruta
-
 
 def exportar_consolidado():
     """Junta las 4 solicitudes en un solo archivo data/consolidado_pqrs.csv
@@ -202,7 +185,6 @@ def exportar_consolidado():
                 fila.append(registro[campo])
             escritor.writerow(fila)
     return ruta, len(registros)
-
 
 # ------------------------------------------------------------
 # Menú de estadísticas
