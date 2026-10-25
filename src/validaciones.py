@@ -38,7 +38,6 @@ ESTADOS = ("Registrada", "En proceso", "Solucionada")
 DIGITOS = "0123456789"
 LETRAS_Y_NUMEROS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 
-
 # ------------------------------------------------------------
 # Funciones de apoyo
 # ------------------------------------------------------------
@@ -51,7 +50,6 @@ def solo_digitos(texto):
             return False
     return True
 
-
 def quitar_tildes(texto):
     """'Petición' -> 'Peticion'. Sirve para comparar sin importar tildes."""
     normalizado = unicodedata.normalize("NFD", texto)
@@ -60,7 +58,6 @@ def quitar_tildes(texto):
         if unicodedata.category(caracter) != "Mn":
             resultado = resultado + caracter
     return resultado
-
 
 def buscar_opcion(valor, opciones):
     """Busca el valor en la tupla de opciones sin importar mayúsculas ni tildes.
@@ -71,11 +68,9 @@ def buscar_opcion(valor, opciones):
             return opcion
     return None
 
-
 def texto_seguro(texto):
     """El símbolo | y los saltos de línea dañarían el archivo plano."""
     return "|" not in texto and "\n" not in texto and "\r" not in texto
-
 
 # ------------------------------------------------------------
 # Validación numérica (try-except)
@@ -88,7 +83,6 @@ def validar_entero(mensaje):
         except ValueError:
             print("Debe ingresar un número entero.")
 
-
 def validar_float(mensaje):
     """Pide un número (puede tener decimales) y repite hasta que sea válido."""
     while True:
@@ -96,7 +90,6 @@ def validar_float(mensaje):
             return float(input(mensaje))
         except ValueError:
             print("Debe ingresar un número (puede tener decimales).")
-
 
 # ------------------------------------------------------------
 # Datos del solicitante
@@ -114,7 +107,6 @@ def validar_nombre(texto):
             return False, "El nombre solo puede tener letras, espacios, apóstrofes (') o guiones (-)."
     return True, ""
 
-
 def validar_opcion(valor, opciones, nombre_campo):
     """Sirve para tipo de documento, tipo de teléfono, canal, mascota, campus, etc."""
     if valor.strip() == "":
@@ -122,7 +114,6 @@ def validar_opcion(valor, opciones, nombre_campo):
     if buscar_opcion(valor, opciones) is None:
         return False, nombre_campo + " no es válido. Opciones: " + ", ".join(opciones)
     return True, ""
-
 
 def validar_numero_documento(texto):
     texto = texto.strip()
@@ -134,7 +125,6 @@ def validar_numero_documento(texto):
         return False, "El número de documento debe tener entre 3 y 15 dígitos."
     return True, ""
 
-
 def validar_telefono(texto):
     texto = texto.strip()
     if texto == "":
@@ -144,8 +134,6 @@ def validar_telefono(texto):
     if len(texto) != 10:
         return False, "El teléfono debe tener exactamente 10 dígitos."
     return True, ""
-
-
 def validar_correo(texto):
     texto = texto.strip()
     if texto == "":
@@ -175,7 +163,6 @@ def validar_correo(texto):
         return False, "El final del dominio debe tener al menos 2 letras (.com, .co, .edu...)."
     return True, ""
 
-
 def validar_direccion(texto):
     """La dirección es OPCIONAL: se acepta vacía."""
     texto = texto.strip()
@@ -187,7 +174,6 @@ def validar_direccion(texto):
         if not (caracter.isalnum() or caracter in " #-./,"):
             return False, "La dirección solo puede tener letras, números y los símbolos # - . / ,"
     return True, ""
-
 
 # ------------------------------------------------------------
 # Información de la PQRS
@@ -202,7 +188,6 @@ def validar_asunto(texto):
         return False, "El asunto no puede tener el símbolo | ni saltos de línea."
     return True, ""
 
-
 def validar_descripcion(texto):
     texto = texto.strip()
     if texto == "":
@@ -215,14 +200,12 @@ def validar_descripcion(texto):
         return False, "La descripción no puede tener el símbolo | ni saltos de línea."
     return True, ""
 
-
 # ------------------------------------------------------------
 # Fechas
 # ------------------------------------------------------------
 def fecha_actual():
     """Fecha y hora de ahora, como texto (ejemplo: 2026-10-18 15:30:00)."""
     return datetime.datetime.now().strftime(FORMATO_FECHA)
-
 
 def validar_fecha(texto):
     """La fecha debe tener el formato AAAA-MM-DD HH:MM:SS y no ser futura."""
@@ -237,13 +220,11 @@ def validar_fecha(texto):
         return False, "La fecha no puede ser futura."
     return True, ""
 
-
 def calcular_fecha_maxima(fecha_texto, dias=DIAS_RESPUESTA):
     """Fecha máxima de respuesta = fecha de radicación + días de plazo."""
     fecha = datetime.datetime.strptime(fecha_texto, FORMATO_FECHA)
     limite = fecha + datetime.timedelta(days=dias)
     return limite.strftime(FORMATO_FECHA)
-
 
 # ------------------------------------------------------------
 # Estado de la PQRS
@@ -260,7 +241,6 @@ def validar_cambio_estado(estado_actual, estado_nuevo):
         return False, "El cambio debe seguir el flujo: Registrada -> En proceso -> Solucionada."
     return True, ""
 
-
 # ------------------------------------------------------------
 # Pedir datos al usuario (repite hasta que el dato sea válido)
 # ------------------------------------------------------------
@@ -272,7 +252,6 @@ def pedir_dato(mensaje, funcion_validar):
         if es_valido:
             return texto.strip()
         print("  ->", error)
-
 
 def pedir_opcion(titulo, opciones):
     """Muestra las opciones numeradas y devuelve la que eligió el usuario."""
