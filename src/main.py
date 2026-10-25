@@ -1,4 +1,4 @@
-# ============================================================
+# ===============================================================================
 # main.py - Programa principal de Patitas PQRS
 # Gestor de PQRS (Peticiones, Quejas, Reclamos y Sugerencias)
 # Algoritmia y Programación 2026-2 - Universidad de Antioquia
@@ -10,7 +10,6 @@ import pqrs
 import reportes
 import validaciones
 
-
 def mostrar_logo():
     print(r" ____   _  _____ ___ _____  _    ____  ")
     print(r"|  _ \ / \|_   _|_ _|_   _|/ \  / ___| ")
@@ -20,7 +19,6 @@ def mostrar_logo():
     print("")
     print("Bienvenido a Patitas - Gestión de PQRS")
 
-
 def mostrar_menu(usuario):
     print("\n----- MENÚ PRINCIPAL (" + usuario["usuario"] + ") -----")
     print("1. Registrar PQRS")
@@ -28,7 +26,6 @@ def mostrar_menu(usuario):
     print("3. Registrar cambio en PQRS")
     print("4. Estadísticas")
     print("5. Salir")
-
 
 def main():
     mostrar_logo()
@@ -53,7 +50,6 @@ def main():
             print("\n¡Gracias por usar Patitas PQRS! Hasta pronto.")
         else:
             print("Opción inválida. Elija un número entre 1 y 5.")
-
 
 if __name__ == "__main__":
     main()
