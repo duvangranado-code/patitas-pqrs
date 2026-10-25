@@ -1,4 +1,4 @@
-# ============================================================
+# ======================================================================
 # autenticacion.py - Login (control de acceso al sistema)
 # Proyecto: Patitas PQRS (Algoritmia y Programación 2026-2)
 #
@@ -27,7 +27,6 @@ def pedir_clave(mensaje):
     except Exception:
         return input(mensaje)
 
-
 def buscar_usuario(texto_usuario, clave):
     """Busca un usuario ACTIVO cuyo usuario (o correo institucional) y clave coincidan.
     Devuelve el diccionario del usuario o None."""
@@ -38,7 +37,6 @@ def buscar_usuario(texto_usuario, clave):
             return usuario
     return None
 
-
 def bloquear_pantalla(segundos):
     """Muestra una cuenta regresiva mientras el sistema está bloqueado."""
     print("\nDemasiados intentos fallidos. Sistema bloqueado por " + str(segundos) + " segundos.")
@@ -48,7 +46,6 @@ def bloquear_pantalla(segundos):
         time.sleep(1)
         restante = restante - 1
     print("\r  Ya puede intentar de nuevo.            ")
-
 
 def iniciar_sesion():
     """Pide las credenciales. Devuelve el usuario que inició sesión,
