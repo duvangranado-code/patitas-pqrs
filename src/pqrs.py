@@ -1,4 +1,4 @@
-# ============================================================
+# =================================================================================
 # pqrs.py - Registrar, consultar y cambiar el estado de las PQRS
 # Proyecto: Patitas PQRS (Algoritmia y Programación 2026-2)
 # ============================================================
@@ -29,7 +29,6 @@ ETIQUETAS = (
     ("fecha_respuesta", "Fecha de respuesta"),
 )
 
-
 def mostrar_registro(registro):
     """Imprime todos los datos de un registro, uno por línea."""
     print("-" * 60)
@@ -40,11 +39,9 @@ def mostrar_registro(registro):
         print(etiqueta + ": " + valor)
     print("-" * 60)
 
-
 def elegir_tipo(titulo):
     """Pregunta qué tipo de solicitud y devuelve 'Peticion', 'Queja', etc."""
     return val.pedir_opcion(titulo, val.TIPOS_SOLICITUD)
-
 
 # ------------------------------------------------------------
 # 1. Registrar PQRS
@@ -109,7 +106,6 @@ def registrar_pqrs(usuario_activo):
     print("\nRadicado guardado en: " + ruta)
     return registro
 
-
 # ------------------------------------------------------------
 # 2. Consultar PQRS
 # ------------------------------------------------------------
@@ -125,7 +121,6 @@ def consultar_pqrs():
     ver = input("\n¿Ver la descripción completa? (s/n): ").strip().lower()
     if ver == "s":
         print("Descripción: " + registro["descripcion_detallada"])
-
 
 # ------------------------------------------------------------
 # 3. Registrar cambio de estado
