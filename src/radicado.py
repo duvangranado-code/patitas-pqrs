@@ -1,4 +1,4 @@
-# ============================================================
+# ====================================================================================
 # radicado.py - Comprobante de radicado en texto ASCII
 # Proyecto: Patitas PQRS (Algoritmia y Programación 2026-2)
 #
@@ -19,18 +19,15 @@ INTERIOR = ANCHO - 4           # espacio para el texto entre "| " y " |"
 
 PREFIJOS = {"Peticion": "PET", "Queja": "QUE", "Reclamo": "REC", "Sugerencia": "SUG"}
 
-
 def a_ascii(texto):
     """Quita tildes y deja solo caracteres ASCII (ñ -> n, á -> a)."""
     sin_tildes = val.quitar_tildes(texto)
     return sin_tildes.encode("ascii", "ignore").decode("ascii")
 
-
 def codigo_radicado(registro):
     """Número de radicado formateado, por ejemplo PET-000123."""
     prefijo = PREFIJOS[registro["tipo_solicitud"]]
     return prefijo + "-" + str(registro["id"]).zfill(6)
-
 
 # ------------------------------------------------------------
 # Piezas del marco (todas miden exactamente 120 caracteres)
@@ -38,29 +35,24 @@ def codigo_radicado(registro):
 def borde():
     return "+" + "-" * (ANCHO - 2) + "+"
 
-
 def linea(texto):
     texto = a_ascii(texto)
     if len(texto) > INTERIOR:
         texto = texto[:INTERIOR - 3] + "..."
     return "| " + texto.ljust(INTERIOR) + " |"
 
-
 def centrada(texto):
     texto = a_ascii(texto)
     return "|" + texto.center(ANCHO - 2) + "|"
 
-
 def titulo_seccion(texto):
     return "|" + (" " + a_ascii(texto) + " ").center(ANCHO - 2, "=") + "|"
-
 
 def campo(etiqueta, valor):
     """Una línea 'Etiqueta: valor'. Si el valor está vacío muestra N/A."""
     if valor.strip() == "":
         valor = "N/A"
     return linea(etiqueta + ": " + valor)
-
 
 # ------------------------------------------------------------
 # Construcción del radicado
@@ -109,12 +101,10 @@ def construir_radicado(registro):
     lineas.append(borde())
     return lineas
 
-
 def imprimir_radicado(registro):
     print("")
     for texto in construir_radicado(registro):
         print(texto)
-
 
 def guardar_radicado(registro):
     """Guarda el radicado en data/radicados/PET-000123.txt y devuelve la ruta."""
