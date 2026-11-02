@@ -86,5 +86,5 @@ Plazo de respuesta definido por el equipo: **15 días calendario**.
 | `validaciones.py` | Validación de nombre, documento, teléfono, correo, fechas y demás datos. |
 | `archivos.py` | Lectura y escritura de los archivos planos de `data/`. |
 | `radicado.py` | Comprobante de radicado en texto ASCII (120 caracteres de ancho). |
-| `reportes.py` | Estadísticas y exportación de resultados. |
+| `reportes.py` | Estadísticas y exportación de resultados. | 
 
