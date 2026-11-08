@@ -45,17 +45,21 @@ Todos los integrantes pertenecen al programa de **Ingeniería Industrial**. A co
 
 ## Cómo ejecutar el programa
 
-Requisitos: **Python 3.8 o superior**. No hay que instalar librerías adicionales.
+Requisitos: **Python 3.8 o superior** y las librerías **pandas** y **numpy** (están en `requirements.txt`).
 
 1. Descargue o clone el repositorio:
    ```
    git clone https://github.com/duvangranado-code/patitas-pqrs.git
    ```
-2. Abra una terminal en la carpeta del proyecto y entre a `src`:
+2. Instale las librerías (solo la primera vez), desde la carpeta del proyecto:
+   ```
+   pip install -r requirements.txt
+   ```
+3. Abra una terminal en la carpeta del proyecto y entre a `src`:
    ```
    cd patitas-pqrs/src
    ```
-3. Ejecute el programa:
+4. Ejecute el programa:
    ```
    python main.py
    ```
@@ -71,7 +75,7 @@ La guía completa de uso está en el [manual de usuario](docs/manual_de_usuario.
 - **Registrar PQRS** (petición, queja, reclamo o sugerencia) con validación de todos los datos.
 - **Consultar PQRS** por tipo e ID, mostrada como radicado de 120 caracteres.
 - **Registrar cambio de estado** (Registrada → En proceso → Solucionada).
-- **Estadísticas**: promedio de días de respuesta, distribución por mascota, canal y campus, efectividad por estado y alerta de vencimiento.
+- **Estadísticas** (con pandas y numpy): promedio de días de respuesta, distribución por mascota, canal y campus, efectividad por estado, alerta de vencimiento y perfil del solicitante (Interno o Externo, según su correo).
 - **Exportar** un resumen en texto y un archivo consolidado para el tablero de Power BI.
 
 Plazo de respuesta definido por el equipo: **15 días calendario**.
@@ -86,5 +90,7 @@ Plazo de respuesta definido por el equipo: **15 días calendario**.
 | `validaciones.py` | Validación de nombre, documento, teléfono, correo, fechas y demás datos. |
 | `archivos.py` | Lectura y escritura de los archivos planos de `data/`. |
 | `radicado.py` | Comprobante de radicado en texto ASCII (120 caracteres de ancho). |
-| `reportes.py` | Estadísticas y exportación de resultados. | 
+| `reportes.py` | Estadísticas (con pandas y numpy) y exportación de resultados. |
+
+
 
