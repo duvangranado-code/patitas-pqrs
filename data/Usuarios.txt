@@ -1,0 +1,13 @@
+usuario|nombre_completo|correo_institucional|contrasena|rol|estado|perfil
+admin_udea|Administrador Principal MEPEGA|admin_udea@udea.edu.co|Adm1n#UdeA2026|Administrador|Activo|Administrativo
+mvelez_udea|Mónica Vélez Correa|mvelez_udea@udea.edu.co|MVel3z#2026|Operador|Activo|Estudiante
+jgomez_udea|Jorge Gómez Restrepo|jgomez_udea@udea.edu.co|JGom3z#2026|Operador|Activo|Estudiante
+lrestrepo_udea|Laura Restrepo Ortiz|lrestrepo_udea@udea.edu.co|LRes7r3po#26|Operador|Activo|Estudiante
+cparra_udea|Carlos Parra Muñoz|cparra_udea@udea.edu.co|CPar#Udea26|Operador|Activo|Estudiante
+dgiraldo_udea|Diana Giraldo Vélez|dgiraldo_udea@udea.edu.co|DGir4ldo#26|Supervisor|Activo|Docente
+fherrera_udea|Felipe Herrera Cano|fherrera_udea@udea.edu.co|FHerr3ra#26|Operador|Activo|Estudiante
+apineda_udea|Andrea Pineda Osorio|apineda_udea@udea.edu.co|APin3da#2026|Operador|Activo|Estudiante
+rquintero_udea|Ricardo Quintero Marín|rquintero_udea@udea.edu.co|RQuint#2026|Supervisor|Activo|Docente
+scardenas_udea|Sara Cárdenas Duque|scardenas_udea@udea.edu.co|SCard3n4s#26|Operador|Activo|Estudiante
+mtorres_udea|Manuela Torres Jaramillo|mtorres_udea@udea.edu.co|MTorr3s#26|Operador|Activo|Estudiante
+jbedoya_udea|Juan Bedoya Serna|jbedoya_udea@udea.edu.co|JBed0ya#2026|Administrador|Activo|Administrativo
