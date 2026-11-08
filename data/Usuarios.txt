@@ -11,3 +11,7 @@ rquintero_udea|Ricardo Quintero Marín|rquintero_udea@udea.edu.co|RQuint#2026|Su
 scardenas_udea|Sara Cárdenas Duque|scardenas_udea@udea.edu.co|SCard3n4s#26|Operador|Activo|Estudiante
 mtorres_udea|Manuela Torres Jaramillo|mtorres_udea@udea.edu.co|MTorr3s#26|Operador|Activo|Estudiante
 jbedoya_udea|Juan Bedoya Serna|jbedoya_udea@udea.edu.co|JBed0ya#2026|Administrador|Activo|Administrativo
+dgranado_udea|Duvan Estiben Granado Alzate|duvan.granado@udea.edu.co|DGran#2026|Operador|Activo|Estudiante
+mestrada_udea|Mario Estrada García|mario.estrada2@udea.edu.co|MEstr#2026|Operador|Activo|Estudiante
+sgonzalez_udea|Samuel González Contreras|samuel.gonzalez4@udea.edu.co|SGonz#2026|Operador|Activo|Estudiante
+ysolar_udea|Yeison Solar Barroso|y.solar@udea.edu.co|YSola#2026|Operador|Activo|Estudiante
