@@ -23,21 +23,20 @@ de perros y gatos, generando radicados y estadísticas de gestión.
 
 Todos los integrantes pertenecen al programa de **Ingeniería Industrial**. A continuación, las fortalezas y habilidades de cada uno en el equipo:
 
-* **Duvan Granado Alzate**
+* **Duvan Estiben Granado Alzate**
 * *Fortalezas:* Capacidad analítica para la optimización de procesos lógicos, estructuración de requerimientos técnicos, disposición constante para el trabajo en equipo y manejo en la distribución responsable del tiempo en las metas del proyecto, responsabilidad y paciencia en el desarrollo de los proyectos.
   
-* **Mario Estrada**
+* **Mario José Estrada García**
   * *Fortalezas:* Capacidades en la organización de datos, manejo eficiente de herramientas ofimáticas como Excel, disposición y atención para la solución de problemas algorítmicos y un gran sentido de compañerismo que facilita la integración del grupo junto con la responsabilidad y compromiso con las actividades.
     
 * **Samuel González Contreras**
   * *Fortalezas:* Excelente trabajo colaborativo en equipo, diseño de la estructura del código base en Python y enfoque ordenado en el uso responsable del tiempo, capacidades de resolución de problemas dentro y fuera del trabajo junto con la responsabilidad y el trabajo en equipo presente.  
 
-* **Yeison Solar**
+* **Yeison Solar Barroso**
   * *Fortalezas:* Rigurosidad en el control de calidad, enfoque en la documentación de los procesos, soporte en la validación de requerimientos y concentración para prestar las mejores soluciones al equipo. 
 
 ---
 ## Estructura del repositorio
-
 - `src/` — Código fuente en Python
 - `docs/` — Documentación, plan de proyecto, actas y [manual de usuario](docs/manual_de_usuario.md)
 - `images/` — Logo y diagramas de Gantt del proyecto
@@ -76,7 +75,8 @@ La guía completa de uso está en el [manual de usuario](docs/manual_de_usuario.
 - **Consultar PQRS** por tipo e ID, mostrada como radicado de 120 caracteres.
 - **Registrar cambio de estado** (Registrada → En proceso → Solucionada).
 - **Estadísticas** (con pandas y numpy): promedio de días de respuesta, distribución por mascota, canal y campus, efectividad por estado, alerta de vencimiento y perfil del solicitante (Interno o Externo, según su correo).
-- **Exportar** un resumen en texto y un archivo consolidado para el tablero de Power BI.
+- **Exportar** un resumen en texto y un archivo consolidado (.csv).
+- **Gráficos** con Matplotlib (por tipo, estado, mes, mascota, canal y días de respuesta), guardados en `graficos/png/` y `graficos/pdf/`.
 
 Plazo de respuesta definido por el equipo: **15 días calendario**.
 
@@ -91,6 +91,7 @@ Plazo de respuesta definido por el equipo: **15 días calendario**.
 | `archivos.py` | Lectura y escritura de los archivos planos de `data/`. |
 | `radicado.py` | Comprobante de radicado en texto ASCII (120 caracteres de ancho). |
 | `reportes.py` | Estadísticas (con pandas y numpy) y exportación de resultados. |
+| `graficas.py` | Gráficos con Matplotlib (PNG y PDF). |
 
 
 
