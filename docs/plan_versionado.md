@@ -18,6 +18,7 @@ Formato de versión: `vMAYOR.MENOR` (0.x = en desarrollo, 1.0 = entrega final).
 | v0.6 | 25-oct-2026 | 40 | Hecha | Código limpio y comentado, manual de usuario en `docs/`, README y plan de versionado. |
 | v0.7 | 8-nov-2026 | 54 | Hecha | Ajustes tras la asesoría con el docente: campo `fecha_respuesta` en los archivos, campo `tipo_usuario` (Interno/Externo según el correo), estadísticas con **pandas y numpy**, nueva estadística de perfil del solicitante y `requirements.txt`. |
 | v0.8 | 22-nov-2026 | 68 | Hecha | Gráficos con Matplotlib (módulo `graficas.py`, opción 4 → 10 del menú); se reemplaza el tablero de Power BI según indicó el docente. |
+| v0.9 | 22-nov-2026 | 68 | Declinada | Revisión con el docente y que partes hacen falta en el documento. | 
 | v1.0 | 24-nov-2026 | 70 | Planeada | **Entrega final:** correcciones, manual de usuario en `docs/`, gráficos con Matplotlib y repositorio completo. |
 
 > Nota: la versión v0.9 (revisión previa con el docente y el monitor) se eliminó del plan porque esa revisión no se realizó.
