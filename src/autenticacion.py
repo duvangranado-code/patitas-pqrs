@@ -16,7 +16,7 @@ import time
 import archivos
 
 MAX_INTENTOS = 3
-TIEMPO_BLOQUEO = 30          # segundos de bloqueo (el equipo puede cambiarlo)
+TIEMPO_BLOQUEO = 30          
 
 
 def pedir_clave(mensaje):
